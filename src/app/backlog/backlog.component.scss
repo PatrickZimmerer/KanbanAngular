@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  h1 {
+    font-size: 3rem;
+    margin: 0;
+    padding: 2rem;
+  }
+  mat-card {
+    font-size: 1rem;
+    margin: 0 2rem 1.5rem;
+  }
+}
+.work-management {
+  width: 35%;
+}
+.add-task {
+  display: inline;
+  color: #69f0ae;
+  cursor: pointer;
+  transition: 125ms ease-in-out;
+  &:hover {
+    border-bottom: #69f0ae 2px solid;
+  }
+}

@@ -1,0 +1,26 @@
+<mat-drawer-container class="mat-drawer-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" [opened]="true" mode="side">
+    <div class="logo-container">
+      <img class="logo" src="assets/img/kanban.png" />
+    </div>
+    <div class="nav-links-container">
+      <ul>
+        <li routerLink="/">BOARD</li>
+        <li routerLink="/backlog">BACKLOG</li>
+        <li routerLink="/add-task">ADD TASK</li>
+        <li routerLink="help">HELP</li>
+      </ul>
+    </div>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <div class="router-outlet-container">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

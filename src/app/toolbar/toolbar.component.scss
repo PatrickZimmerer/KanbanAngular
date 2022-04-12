@@ -1,0 +1,49 @@
+.example-sidenav-content {
+  display: flex;
+}
+.mat-drawer-container {
+  height: 100vh;
+}
+.logo {
+  height: 4rem;
+  padding: 1.5rem;
+  border-bottom: #69f0ae 2px solid;
+  cursor: pointer;
+}
+mat-icon {
+  font-size: 2rem;
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+}
+.nav-links-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  margin-top: 1.5rem;
+  ul {
+    margin-block-end: 0;
+    margin-block-start: 0;
+    width: 100%;
+    padding-inline-start: 0px;
+  }
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 1rem;
+    color: #69f0ae;
+    cursor: pointer;
+    transition: 125ms ease-in-out;
+    &:hover {
+      background-color: #69f0ae;
+      color: black;
+    }
+  }
+}
