@@ -3,6 +3,10 @@
 }
 .mat-drawer-container {
   height: 100vh;
+  overflow: hidden !important;
+}
+.mat-drawer-content {
+  overflow: hidden !important;
 }
 .logo {
   height: 4rem;

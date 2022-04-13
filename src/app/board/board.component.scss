@@ -1,13 +1,14 @@
 :host {
   display: flex;
-  justify-content: space-evenly;
-  overflow: hidden;
-  height: 92vh;
-  max-height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 91vh;
+  padding: 0 1rem;
   div {
     width: 23%;
+    margin: 0 1rem;
     background-color: #424242;
-    height: calc(99vh - 90px);
+    height: 95%;
     border-radius: 4px;
   }
   h1 {
@@ -19,7 +20,6 @@
 @media (max-width: 1281px) {
   :host {
     flex-wrap: wrap;
-    align-content: flex-start;
     margin: 0;
     height: 89vh;
     div {
@@ -31,13 +31,20 @@
     }
   }
 }
-@media (max-width: 930px) {
+@media (max-width: 980px) {
   :host {
-    height: 93vh;
+    height: 91vh;
+    align-content: unset;
+    justify-content: space-evenly;
+    div {
+      width: 44%;
+      margin: 0 0.5rem;
+    }
   }
 }
-@media (max-width: 530px) {
+@media (max-width: 590px) {
   :host {
+    height: 92vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -45,7 +52,7 @@
     div {
       width: 95%;
       background-color: #424242;
-      height: 23.9%;
+      height: 22.9%;
       border-radius: 4px;
       margin: 0.5rem 0.5rem 0;
     }
@@ -60,7 +67,7 @@
 }
 @media (max-width: 420px) {
   :host {
-    height: 92.5vh;
+    height: 91.5vh;
   }
 }
 @media (max-width: 380px) {
