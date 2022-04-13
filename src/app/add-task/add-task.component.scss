@@ -1,0 +1,143 @@
+:host {
+  height: 90vh;
+  overflow: hidden;
+}
+mat-card {
+  margin: 1rem;
+}
+.head-card {
+  text-align: center;
+}
+.body-card {
+  height: auto;
+}
+form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 0.5rem;
+  mat-form-field {
+    width: 100%;
+  }
+  input {
+    &.ng-touched,
+    &.ng-dirty,
+    &.ng-invalid {
+      border: red 2px solid;
+    }
+    &.ng-valid {
+      border: green 2px solid;
+    }
+  }
+  .collumn {
+    width: 48%;
+  }
+  .description {
+    min-height: 7rem;
+    max-height: 11rem;
+  }
+  .error {
+    color: red;
+  }
+}
+
+button {
+  color: #69f0ae;
+  margin: 0.5rem 0 0 0;
+  padding: 1rem;
+  border: none;
+  width: 50%;
+  border-radius: 1rem;
+  background-color: #69f0ae;
+  &:disabled {
+    opacity: 0.2;
+    color: grey;
+  }
+}
+.submit-btn-div {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  top: 3rem;
+}
+
+// /* SCREEN HEIGHT MEDIA QUERIES */
+// @media (min-height: 830px) {
+//   .body-card {
+//     height: 75vh;
+//   }
+// }
+// @media (min-height: 920px) {
+//   .body-card {
+//     height: 77vh;
+//   }
+// }
+// @media (min-height: 980px) {
+//   .body-card {
+//     height: 79vh;
+//   }
+// }
+
+/* WIDE SCREEN MEDIA QUERIES */
+@media (min-width: 1300px) {
+  mat-form-field {
+    padding-bottom: 0.5rem;
+  }
+}
+@media (min-width: 1550px) {
+  mat-form-field {
+    padding-bottom: 2rem;
+  }
+}
+@media (min-width: 1650px) {
+  mat-form-field {
+    font-size: 1.3rem;
+    padding-bottom: 2rem;
+  }
+}
+@media (min-width: 1800px) {
+  mat-form-field {
+    font-size: 1.3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* SMALL SCREEN MEDIA QUERIES */
+
+@media (max-width: 1030px) {
+  mat-card {
+    padding: 0.5rem;
+  }
+  h2 {
+    margin-block-end: 0.5rem;
+  }
+}
+@media (max-width: 980px) {
+  form {
+    flex-direction: column;
+    align-items: center;
+    .collumn {
+      width: 95%;
+    }
+  }
+  button {
+    margin: 0 0 1rem;
+    padding: 0.5rem;
+    width: 100%;
+    border-radius: 1rem;
+    &:disabled {
+      opacity: 0.2;
+      color: grey;
+    }
+  }
+}
+@media (max-width: 400px) {
+  mat-card {
+    margin: 0.5rem;
+  }
+  h2 {
+    font-size: 14px;
+    margin-block-end: 0.5rem;
+  }
+}

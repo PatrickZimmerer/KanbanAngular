@@ -1,17 +1,79 @@
-<mat-form-field appearance="fill">
-  <mat-label>Input</mat-label>
-  <input matInput />
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Toppings</mat-label>
-  <!-- [formControl]="employees" multiple -->
-  <mat-select>
-    <mat-option *ngFor="let employee of employeeList" [value]="employee">{{
-      employee
-    }}</mat-option>
-  </mat-select>
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Textarea</mat-label>
-  <textarea matInput></textarea>
-</mat-form-field>
+<mat-card class="head-card"><h1>Add Task</h1></mat-card>
+<mat-card class="body-card">
+  <form class="add-task-form">
+    <div class="collumn">
+      <h2>TITLE</h2>
+      <mat-form-field
+        color="accent"
+        class="example-full-width"
+        appearance="fill"
+      >
+        <mat-label>Title</mat-label>
+        <input matInput />
+      </mat-form-field>
+
+      <h2>CATEGORY</h2>
+      <mat-form-field
+        color="accent"
+        class="example-full-width"
+        appearance="fill"
+      >
+        <mat-label>Category</mat-label>
+        <mat-select>
+          <mat-option value="Marketing">Marketing</mat-option>
+          <mat-option value="Frontend Development"
+            >Frontend Development</mat-option
+          >
+          <mat-option value="UI/UX Desin">UI/UX Desin</mat-option>
+          <mat-option value="Backend Development"
+            >Backend Development</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <h2>DESCRIPTION</h2>
+      <mat-form-field color="accent" class="description" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea class="description" matInput></textarea>
+      </mat-form-field>
+    </div>
+    <div class="collumn">
+      <h2>DUE DATE</h2>
+      <mat-form-field color="accent" appearance="fill">
+        <mat-label>MM/DD/YYYY</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <h2>URGENCY</h2>
+      <mat-form-field
+        color="accent"
+        class="example-full-width"
+        appearance="fill"
+      >
+        <mat-label>Category</mat-label>
+        <mat-select>
+          <mat-option value="High">High</mat-option>
+          <mat-option value="Medium">Medium</mat-option>
+          <mat-option value="Low">Low</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <h2>EMPLOYEES</h2>
+      <mat-form-field color="accent" appearance="fill">
+        <mat-label>Employees</mat-label>
+        <mat-select multiple>
+          <mat-option
+            *ngFor="let employee of employeeList"
+            [value]="employee"
+            >{{ employee }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <button class="submit-btn" mat-raised-button color="accent">
+        SUBMIT
+      </button>
+    </div>
+  </form>
+</mat-card>
