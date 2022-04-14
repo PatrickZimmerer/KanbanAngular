@@ -19,16 +19,6 @@ form {
   mat-form-field {
     width: 100%;
   }
-  input {
-    &.ng-touched,
-    &.ng-dirty,
-    &.ng-invalid {
-      border: red 2px solid;
-    }
-    &.ng-valid {
-      border: green 2px solid;
-    }
-  }
   .collumn {
     width: 48%;
   }
@@ -62,24 +52,6 @@ button {
   top: 3rem;
 }
 
-// /* SCREEN HEIGHT MEDIA QUERIES */
-// @media (min-height: 830px) {
-//   .body-card {
-//     height: 75vh;
-//   }
-// }
-// @media (min-height: 920px) {
-//   .body-card {
-//     height: 77vh;
-//   }
-// }
-// @media (min-height: 980px) {
-//   .body-card {
-//     height: 79vh;
-//   }
-// }
-
-/* WIDE SCREEN MEDIA QUERIES */
 @media (min-width: 1300px) {
   mat-form-field {
     padding-bottom: 0.5rem;

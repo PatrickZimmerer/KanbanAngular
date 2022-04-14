@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "kanban-d9019": {
+      "hosting": {
+        "KanbanAngular": [
+          "kanban-d9019"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "kanban-d9019"
+  }
+}

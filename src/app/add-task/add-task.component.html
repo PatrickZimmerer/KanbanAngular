@@ -1,6 +1,6 @@
 <mat-card class="head-card"><h1>Add Task</h1></mat-card>
 <mat-card class="body-card">
-  <form class="add-task-form">
+  <form [formGroup]="addTaskForm" class="add-task-form">
     <div class="collumn">
       <h2>TITLE</h2>
       <mat-form-field
@@ -8,8 +8,8 @@
         class="example-full-width"
         appearance="fill"
       >
-        <mat-label>Title</mat-label>
-        <input matInput />
+        <mat-label>Task title</mat-label>
+        <input formControlName="title" matInput />
       </mat-form-field>
 
       <h2>CATEGORY</h2>
@@ -18,30 +18,35 @@
         class="example-full-width"
         appearance="fill"
       >
-        <mat-label>Category</mat-label>
-        <mat-select>
-          <mat-option value="Marketing">Marketing</mat-option>
-          <mat-option value="Frontend Development"
-            >Frontend Development</mat-option
-          >
-          <mat-option value="UI/UX Desin">UI/UX Desin</mat-option>
-          <mat-option value="Backend Development"
-            >Backend Development</mat-option
+        <mat-label>Choose a category</mat-label>
+        <mat-select formControlName="category">
+          <mat-option
+            *ngFor="let category of categoryList"
+            [value]="category"
+            >{{ category }}</mat-option
           >
         </mat-select>
       </mat-form-field>
 
       <h2>DESCRIPTION</h2>
       <mat-form-field color="accent" class="description" appearance="fill">
-        <mat-label>Description</mat-label>
-        <textarea class="description" matInput></textarea>
+        <mat-label>Task description</mat-label>
+        <textarea
+          formControlName="description"
+          class="description"
+          matInput
+        ></textarea>
       </mat-form-field>
     </div>
+
     <div class="collumn">
+      <mat-form-field class="d-none" appearance="fill">
+        <input formControlName="board" matInput value="Board" />
+      </mat-form-field>
       <h2>DUE DATE</h2>
       <mat-form-field color="accent" appearance="fill">
         <mat-label>MM/DD/YYYY</mat-label>
-        <input matInput [matDatepicker]="picker" />
+        <input formControlName="dueDate" matInput [matDatepicker]="picker" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -52,17 +57,18 @@
         class="example-full-width"
         appearance="fill"
       >
-        <mat-label>Category</mat-label>
-        <mat-select>
-          <mat-option value="High">High</mat-option>
-          <mat-option value="Medium">Medium</mat-option>
-          <mat-option value="Low">Low</mat-option>
+        <mat-label>Choose an urgency</mat-label>
+        <mat-select formControlName="urgency">
+          <mat-option *ngFor="let urgency of urgencyList" [value]="urgency">{{
+            urgency
+          }}</mat-option>
         </mat-select>
       </mat-form-field>
+
       <h2>EMPLOYEES</h2>
       <mat-form-field color="accent" appearance="fill">
-        <mat-label>Employees</mat-label>
-        <mat-select multiple>
+        <mat-label>Assign task to... </mat-label>
+        <mat-select multiple formControlName="assignedTo">
           <mat-option
             *ngFor="let employee of employeeList"
             [value]="employee"
@@ -71,7 +77,12 @@
         </mat-select>
       </mat-form-field>
 
-      <button class="submit-btn" mat-raised-button color="accent">
+      <button
+        (click)="addTask()"
+        class="submit-btn"
+        mat-raised-button
+        color="accent"
+      >
         SUBMIT
       </button>
     </div>
