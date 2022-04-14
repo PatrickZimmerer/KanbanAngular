@@ -51,6 +51,7 @@ export class AddTaskComponent implements OnInit {
       urgency: new FormControl('', [Validators.required]),
       assignedTo: new FormControl('', [Validators.required]),
       board: new FormControl('', [Validators.required], []),
+      location: new FormControl('', [Validators.required], []),
     });
   }
 
@@ -59,24 +60,28 @@ export class AddTaskComponent implements OnInit {
   ngOnInit(): void {}
 
   addTask() {
-    // console.log('before this task is', this.addTaskForm.value);
-    // this.addTaskForm.value.dueDate = this.addTaskForm.value.dueDate.getTime();
-    // console.log('after this task is', this.addTaskForm.value);
-    // const firebaseApp = getApp();
-    // const db = getFirestore(firebaseApp);
-    // const taskCollection = collection(db, 'tasks');
-    // addDoc(taskCollection, this.addTaskForm.value);
-
-    this.task = this.addTaskForm.value;
-    console.log('this.task is', this.task);
-    // this.newTask();
-    // console.log('after new task', this.task);
-    // console.log('new task going to firestore', this.task);
-    this.firestore
-      .collection('tasks')
-      .add(this.task.toJSON())
-      .then((result: any) => {
-        console.log('added Task', result);
-      });
+    if (this.addTaskForm.invalid) {
+      this.addTaskForm.markAllAsTouched();
+    } else {
+      console.log('reset');
+      this.addTaskForm.reset();
+      this.addTaskForm.markAsUntouched();
+      this.addTaskForm.markAsPristine();
+      console.log('before timestamp and location', this.addTaskForm.value);
+      this.addTaskForm.value.dueDate = this.addTaskForm.value.dueDate.getTime();
+      this.addTaskForm.value.location = 'Backlog';
+      // const firebaseApp = getApp();
+      // const db = getFirestore(firebaseApp);
+      // const taskCollection = collection(db, 'tasks');
+      // addDoc(taskCollection, this.addTaskForm.value);
+      this.task = new Task(this.addTaskForm.value);
+      console.log('this.task is', this.task);
+      this.firestore
+        .collection('tasks')
+        .add(this.task.toJSON())
+        .then((result: any) => {
+          console.log('added Task', result);
+        });
+    }
   }
 }

@@ -40,9 +40,9 @@
     </div>
 
     <div class="collumn">
-      <mat-form-field class="d-none" appearance="fill">
-        <input formControlName="board" matInput value="Board" />
-      </mat-form-field>
+      <!-- <mat-form-field class="d-none" appearance="fill">
+        <input formControlName="location" matInput value="Backlog" />
+      </mat-form-field> -->
       <h2>DUE DATE</h2>
       <mat-form-field color="accent" appearance="fill">
         <mat-label>MM/DD/YYYY</mat-label>
@@ -79,6 +79,7 @@
 
       <button
         (click)="addTask()"
+        type="button"
         class="submit-btn"
         mat-raised-button
         color="accent"

@@ -5,7 +5,7 @@ export class Task {
   dueDate: string;
   urgency: string;
   assignedTo: string;
-  board: string;
+  location: string;
 
   constructor(obj?: any) {
     this.title = obj ? obj.title : '';
@@ -14,7 +14,7 @@ export class Task {
     this.dueDate = obj ? obj.dueDate : '';
     this.urgency = obj ? obj.urgency : '';
     this.assignedTo = obj ? obj.assignedTo : '';
-    this.board = obj ? obj.board : '';
+    this.location = obj ? obj.location : '';
   }
 
   public toJSON() {
@@ -25,7 +25,7 @@ export class Task {
       dueDate: this.dueDate,
       urgency: this.urgency,
       assignedTo: this.assignedTo,
-      board: this.board,
+      location: this.location,
     };
   }
 }
