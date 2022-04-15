@@ -25,6 +25,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TaskDetailComponent } from './task-detail/task-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +36,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     BacklogComponent,
     AddTaskComponent,
     HelpComponent,
+    TaskDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     MatInputModule,
     MatButtonModule,
     AngularFirestoreModule,
+    MatTooltipModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],

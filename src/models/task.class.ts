@@ -2,7 +2,7 @@ export class Task {
   title: string;
   category: string;
   description: string;
-  dueDate: string;
+  dueDate: number;
   urgency: string;
   assignedTo: string;
   location: string;

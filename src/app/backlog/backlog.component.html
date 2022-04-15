@@ -5,4 +5,29 @@
   <p class="add-task" routerLink="/add-task">ADD TASK</p>
   to create new tasks</mat-card
 >
-<mat-card class="tasks">When Tasks</mat-card>
+
+<div class="tasks-container">
+  <mat-card
+    *ngFor="let task of allTasks"
+    [routerLink]="['/task/' + 'task.cusomIdName']"
+    class="task-card"
+  >
+    <div class="task-value-div">
+      <h2 class="task-title">{{ task.title }}</h2>
+      <p class="task-category">{{ task.category }}</p>
+      <p class="task-due-date">{{ task.dueDate }}</p>
+      <p class="task-assigned-to">{{ task.assignedTo }}</p>
+    </div>
+    <div class="task-icons-div">
+      <mat-icon matTooltip="Delete this task" matTooltipPosition="left"
+        >delete</mat-icon
+      >
+      <mat-icon matTooltip="Move this task to Board" matTooltipPosition="left"
+        >drive_file_move</mat-icon
+      >
+      <mat-icon matTooltip="Edit this task" matTooltipPosition="left"
+        >edit</mat-icon
+      >
+    </div>
+  </mat-card>
+</div>

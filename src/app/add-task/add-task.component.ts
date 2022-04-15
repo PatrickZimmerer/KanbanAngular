@@ -6,8 +6,6 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
-import { getApp } from 'firebase/app';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { Task } from 'src/models/task.class';
 @Component({
   selector: 'app-add-task',
@@ -60,28 +58,21 @@ export class AddTaskComponent implements OnInit {
   ngOnInit(): void {}
 
   addTask() {
-    if (this.addTaskForm.invalid) {
-      this.addTaskForm.markAllAsTouched();
-    } else {
-      console.log('reset');
-      this.addTaskForm.reset();
-      this.addTaskForm.markAsUntouched();
-      this.addTaskForm.markAsPristine();
-      console.log('before timestamp and location', this.addTaskForm.value);
-      this.addTaskForm.value.dueDate = this.addTaskForm.value.dueDate.getTime();
-      this.addTaskForm.value.location = 'Backlog';
-      // const firebaseApp = getApp();
-      // const db = getFirestore(firebaseApp);
-      // const taskCollection = collection(db, 'tasks');
-      // addDoc(taskCollection, this.addTaskForm.value);
-      this.task = new Task(this.addTaskForm.value);
-      console.log('this.task is', this.task);
-      this.firestore
-        .collection('tasks')
-        .add(this.task.toJSON())
-        .then((result: any) => {
-          console.log('added Task', result);
-        });
-    }
+    // if (this.addTaskForm.invalid) {
+    //   this.addTaskForm.markAllAsTouched();
+    // } else {
+    this.addTaskForm.value.dueDate = this.addTaskForm.value.dueDate.getTime();
+    this.addTaskForm.value.location = 'Backlog';
+    this.task = new Task(this.addTaskForm.value);
+    console.log('this.task is', this.task);
+    this.firestore
+      .collection('tasks')
+      .add(this.task.toJSON())
+      .then((result: any) => {
+        console.log('added Task', result);
+      });
+    this.addTaskForm.reset();
+    this.addTaskForm.markAsUntouched();
+    this.addTaskForm.markAsPristine();
   }
 }
