@@ -11,3 +11,13 @@ body {
 .d-none {
   display: none !important;
 }
+::-webkit-scrollbar {
+  width: 6px;
+  overflow-y: scroll;
+  background: grey;
+  box-shadow: inset 0 0 4px #707070;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7b1fa2;
+}

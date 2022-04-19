@@ -1,33 +1,38 @@
 <h1>Backlog</h1>
-
-<mat-card class="no-tasks"
-  >There are no tasks. Go to
-  <p class="add-task" routerLink="/add-task">ADD TASK</p>
-  to create new tasks</mat-card
+<ng-container *ngFor="let task of allTasks">
+  <mat-card *ngIf="task.location != 'Backlog'" class="no-tasks"
+    >There are no tasks. Go to
+    <p class="add-task" routerLink="/add-task">ADD TASK</p>
+    to create new tasks</mat-card
+  ></ng-container
 >
 
 <div class="tasks-container">
-  <mat-card
-    *ngFor="let task of allTasks"
-    [routerLink]="['/task/' + 'task.cusomIdName']"
-    class="task-card"
-  >
-    <div class="task-value-div">
-      <h2 class="task-title">{{ task.title }}</h2>
-      <p class="task-category">{{ task.category }}</p>
-      <p class="task-due-date">{{ task.dueDate }}</p>
-      <p class="task-assigned-to">{{ task.assignedTo }}</p>
-    </div>
-    <div class="task-icons-div">
-      <mat-icon matTooltip="Delete this task" matTooltipPosition="left"
-        >delete</mat-icon
-      >
-      <mat-icon matTooltip="Move this task to Board" matTooltipPosition="left"
-        >drive_file_move</mat-icon
-      >
-      <mat-icon matTooltip="Edit this task" matTooltipPosition="left"
-        >edit</mat-icon
-      >
-    </div>
-  </mat-card>
+  <ng-container *ngFor="let task of allTasks; let i = index">
+    <mat-card *ngIf="task.location === 'Backlog'" class="task-card">
+      <div (click)="openDetailDialog()" class="task-value-div">
+        <h2 class="task-title">{{ task.title }}</h2>
+        <p class="task-category">{{ task.category }}</p>
+        <p class="task-due-date">{{ task.dueDate | date: "dd.MM.yyyy" }}</p>
+        <p class="task-assigned-to">{{ task.assignedTo }}</p>
+      </div>
+      <div class="task-icons-div">
+        <mat-icon matTooltip="Delete this task" matTooltipPosition="left"
+          >delete</mat-icon
+        >
+        <mat-icon
+          (click)="moveToBoard(task)"
+          matTooltip="Move this task to Board"
+          matTooltipPosition="left"
+          >drive_file_move</mat-icon
+        >
+        <mat-icon
+          [routerLink]="['/task/' + task.customIdName]"
+          matTooltip="Edit this task"
+          matTooltipPosition="left"
+          >edit</mat-icon
+        >
+      </div>
+    </mat-card>
+  </ng-container>
 </div>

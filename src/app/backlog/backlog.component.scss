@@ -20,8 +20,8 @@
 .add-task {
   display: inline;
   color: #69f0ae;
-  cursor: pointer;
   transition: 125ms ease-in-out;
+  cursor: pointer;
   &:hover {
     border-bottom: #69f0ae 2px solid;
   }
@@ -41,6 +41,7 @@
     }
     .task-value-div {
       width: 88%;
+      cursor: pointer;
     }
     .task-icons-div {
       width: 12%;

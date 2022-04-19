@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,8 +25,12 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { TaskDetailComponent } from './task-detail/task-detail.component';
-
+import { DialogDetailTaskComponent } from './dialog-detail-task/dialog-detail-task.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { EditTaskComponent } from './edit-task/edit-task.component';
+import { DetailTaskComponent } from './detail-task/detail-task.component';
+import { DialogEditTaskComponent } from './dialog-edit-task/dialog-edit-task.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,10 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     BacklogComponent,
     AddTaskComponent,
     HelpComponent,
-    TaskDetailComponent,
+    DialogDetailTaskComponent,
+    EditTaskComponent,
+    DetailTaskComponent,
+    DialogEditTaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,11 +60,13 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatDialogModule,
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
     AngularFirestoreModule,
     MatTooltipModule,
+    DragDropModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
