@@ -1,80 +1,66 @@
-<div class="to-do-wrap collumn">
-  <h1>TO-DO</h1>
-  <div
-    cdkDropList
-    #todoList="cdkDropList"
-    [cdkDropListData]="todo"
-    [cdkDropListConnectedTo]="[doneList]"
-    (cdkDropListDropped)="drop($event)"
-    class="tasks-container"
-  >
-    <ng-container *ngFor="let task of allTasks; let i = index">
-      <mat-card *ngIf="task.location === 'Board'" class="task-card">
-        <div class="task-div">
-          <h2 class="task-title">{{ task.title }}</h2>
-          <p class="task-description">{{ task.description }}</p>
-        </div>
-      </mat-card>
-    </ng-container>
+<div class="wrap" cdkDropListGroup>
+  <div (cdkDropListDropped)="drop(event)" class="collumn">
+    <h1>TO-DO</h1>
+    <div cdkDropList class="tasks-container to-do">
+      <ng-container *ngFor="let task of allTasks; let i = index">
+        <mat-card *ngIf="task.location === 'Backlog'" class="task-card" cdkDrag>
+          <div class="task-div">
+            <h2 class="task-title">{{ task.title }}</h2>
+            <p class="task-description">{{ task.description }}</p>
+          </div>
+        </mat-card>
+      </ng-container>
+    </div>
   </div>
-</div>
-<div class="in-progress collumn">
-  <h1>IN PROGRESS</h1>
-  <div
-    cdkDropList
-    #todoList="cdkDropList"
-    [cdkDropListData]="progress"
-    [cdkDropListConnectedTo]="[doneList]"
-    (cdkDropListDropped)="drop($event)"
-    class="tasks-container"
-  >
-    <!-- <ng-container *ngFor="let task of allTasks; let i = index">
-      <mat-card *ngIf="task.location === 'Backlog'" class="task-card">
-        <div class="task-div">
-          <h2 class="task-title">{{ task.title }}</h2>
-          <p class="task-description">{{ task.description }}</p>
-        </div>
-      </mat-card>
-    </ng-container> -->
+  <div class="collumn">
+    <h1>IN PROGRESS</h1>
+    <div
+      cdkDropList
+      (cdkDropListDropped)="drop(event)"
+      class="tasks-container in-progress"
+    >
+      <ng-container *ngFor="let task of allTasks; let i = index">
+        <mat-card *ngIf="task.location === 'Backlog'" class="task-card" cdkDrag>
+          <div class="task-div">
+            <h2 class="task-title">{{ task.title }}</h2>
+            <p class="task-description">{{ task.description }}</p>
+          </div>
+        </mat-card>
+      </ng-container>
+    </div>
   </div>
-</div>
-<div class="testing collumn">
-  <h1>TESTING</h1>
-  <div
-    cdkDropList
-    #todoList="cdkDropList"
-    [cdkDropListData]="testing"
-    [cdkDropListConnectedTo]="[doneList]"
-    (cdkDropListDropped)="drop($event)"
-    class="tasks-container"
-  >
-    <!-- <ng-container *ngFor="let task of allTasks; let i = index">
-      <mat-card *ngIf="task.location === 'Backlog'" class="task-card">
-        <div class="task-div">
-          <h2 class="task-title">{{ task.title }}</h2>
-          <p class="task-description">{{ task.description }}</p>
-        </div>
-      </mat-card>
-    </ng-container> -->
+  <div class="collumn">
+    <h1>TESTING</h1>
+    <div
+      cdkDropList
+      (cdkDropListDropped)="drop(event)"
+      class="tasks-container testing"
+    >
+      <ng-container *ngFor="let task of allTasks; let i = index">
+        <mat-card *ngIf="task.location === 'Backlog'" class="task-card" cdkDrag>
+          <div class="task-div">
+            <h2 class="task-title">{{ task.title }}</h2>
+            <p class="task-description">{{ task.description }}</p>
+          </div>
+        </mat-card>
+      </ng-container>
+    </div>
   </div>
-</div>
-<div class="done collumn">
-  <h1>DONE</h1>
-  <div
-    cdkDropList
-    #todoList="cdkDropList"
-    [cdkDropListData]="done"
-    [cdkDropListConnectedTo]="[doneList]"
-    (cdkDropListDropped)="drop($event)"
-    class="tasks-container"
-  >
-    <!-- <ng-container *ngFor="let task of allTasks; let i = index">
-      <mat-card *ngIf="task.location === 'Backlog'" class="task-card">
-        <div class="task-div">
-          <h2 class="task-title">{{ task.title }}</h2>
-          <p class="task-description">{{ task.description }}</p>
-        </div>
-      </mat-card>
-    </ng-container> -->
+  <div class="collumn">
+    <h1>DONE</h1>
+    <div
+      cdkDropList
+      (cdkDropListDropped)="drop(event)"
+      class="tasks-container done"
+    >
+      <ng-container *ngFor="let task of allTasks; let i = index">
+        <mat-card *ngIf="task.location === 'Backlog'" class="task-card" cdkDrag>
+          <div class="task-div">
+            <h2 class="task-title">{{ task.title }}</h2>
+            <p class="task-description">{{ task.description }}</p>
+          </div>
+        </mat-card>
+      </ng-container>
+    </div>
   </div>
 </div>

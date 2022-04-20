@@ -1,18 +1,20 @@
 :host {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 91vh;
   padding: 0 1rem;
+  .wrap {
+    height: 91vh;
+    display: flex;
+    justify-content: space-between;
+  }
   .collumn {
-    width: 23%;
-    margin: 0 1rem;
+    margin: 0 0.5rem;
+    overflow-y: auto;
     background-color: #424242;
     height: 95%;
-    border-radius: 4px;
-    overflow-x: auto;
-    &:not(:first-child) {
+    &:first-child {
       margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
     }
   }
   h1 {
@@ -59,88 +61,86 @@
 }
 @media (max-width: 1281px) {
   :host {
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 0;
-    height: 89vh;
-    .collumn {
-      width: 46%;
-      background-color: #424242;
-      height: calc(49vh - 50px);
-      border-radius: 4px;
-      margin-top: 1rem;
-      &:not(:first-child) {
-        margin-left: 1rem;
+    .wrap {
+      flex-wrap: wrap;
+      height: 90vh;
+      .collumn {
+        width: 49%;
+        background-color: #424242;
+        height: calc(49vh - 50px);
+        margin: 0;
+        &:nth-child(2n) {
+          margin-right: 0rem;
+        }
+        &:nth-child(2n - 1) {
+          margin-left: 0rem;
+        }
+        &:first-child {
+          margin-left: 0;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
       }
     }
   }
 }
 @media (max-width: 980px) {
   :host {
-    height: 91vh;
-    justify-content: space-between;
-    .collumn {
-      width: 47%;
-      margin: 0 0.5rem;
-      &:not(:first-child) {
-        margin-left: 0.5rem;
+    .wrap {
+      height: 90vh;
+      justify-content: space-between;
+      .collumn {
+        width: 48%;
+        margin: 0;
       }
-    }
-  }
-}
-@media (max-width: 740px) {
-  :host {
-    .collumn {
-      width: 45%;
     }
   }
 }
 @media (max-width: 590px) {
   :host {
-    height: 92vh;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
-    .collumn {
-      width: 95%;
-      background-color: #424242;
-      height: 22.9%;
-      border-radius: 4px;
-      margin: 0.5rem 0.5rem 0;
-    }
-    h1 {
-      font-size: 18px;
-      padding: 0 1rem;
-      border-bottom: #69f0ae 2px solid;
-    }
-    .tasks-container {
-      mat-card {
-        padding: 0.5rem;
-        overflow: hidden;
+    .wrap {
+      height: unset;
+      flex-direction: column;
+      align-items: center;
+      flex-wrap: nowrap;
+      .collumn {
+        width: 100%;
+        background-color: #424242;
+        height: 40%;
+        &:nth-child(1n + 0) {
+          margin-bottom: 1rem;
+        }
       }
-      h2 {
-        font-weight: 400;
-        line-height: 1.2;
-        font-size: 16px;
+      h1 {
+        font-size: 18px;
+        padding: 0 1rem;
+        border-bottom: #69f0ae 2px solid;
       }
-      p {
-        font-weight: 300;
-        font-size: 14px;
+      .tasks-container {
+        mat-card {
+          padding: 0.5rem;
+          overflow: hidden;
+        }
+        h2 {
+          font-weight: 400;
+          line-height: 1.2;
+          font-size: 16px;
+        }
+        p {
+          font-weight: 300;
+          font-size: 14px;
+        }
       }
     }
   }
 }
 @media (max-width: 420px) {
   :host {
-    height: 91.5vh;
-    h1 {
-      font-size: 16px;
+    .wrap {
+      h1 {
+        font-size: 16px;
+      }
     }
-  }
-}
-@media (max-width: 380px) {
-  :host {
-    height: 91vh;
   }
 }

@@ -13,14 +13,16 @@
     </div>
   </mat-drawer>
 
-  <div class="example-sidenav-content">
-    <mat-toolbar color="primary">
-      <mat-toolbar-row>
-        <mat-icon (click)="drawer.toggle()">menu</mat-icon>
-      </mat-toolbar-row>
-    </mat-toolbar>
-  </div>
-  <div class="router-outlet-container">
-    <router-outlet></router-outlet>
-  </div>
+  <mat-drawer-content>
+    <div class="example-sidenav-content">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+    <div class="router-outlet-container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
 </mat-drawer-container>

@@ -31,6 +31,8 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
 import { DetailTaskComponent } from './detail-task/detail-task.component';
 import { DialogEditTaskComponent } from './dialog-edit-task/dialog-edit-task.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+// import { DragulaModule } from 'ng2-dragula';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,13 +62,14 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    DragDropModule,
     MatDialogModule,
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
     AngularFirestoreModule,
     MatTooltipModule,
-    DragDropModule,
+    // DragulaModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
