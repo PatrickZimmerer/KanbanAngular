@@ -8,6 +8,7 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-task',
@@ -33,6 +34,7 @@ export class EditTaskComponent implements OnInit {
   urgencyList: string[] = ['High', 'Medium', 'Low'];
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder,
     public firestore: AngularFirestore
   ) {
@@ -49,11 +51,8 @@ export class EditTaskComponent implements OnInit {
       dueDate: new FormControl('', [Validators.required]),
       urgency: new FormControl('', [Validators.required]),
       assignedTo: new FormControl('', [Validators.required]),
-      board: new FormControl('', [Validators.required], []),
-      location: new FormControl('', [Validators.required], []),
     });
   }
-
   taskId: any;
   editTaskForm!: FormGroup;
   ngOnInit(): void {
@@ -63,6 +62,7 @@ export class EditTaskComponent implements OnInit {
       this.getTask();
     });
   }
+
   getTask() {
     this.firestore
       .collection('tasks')
@@ -73,14 +73,22 @@ export class EditTaskComponent implements OnInit {
       });
   }
   editBacklogTask() {
-    this.editTaskForm.value.location = 'Backlog';
-    this.task = new Task(this.editTaskForm.value);
-    this.firestore
-      .collection('tasks')
-      .doc(this.taskId)
-      .update(this.task.toJSON())
-      .then(() => {
-        console.log('updated firebase');
-      });
+    debugger;
+    if (this.editTaskForm.invalid) {
+      this.editTaskForm.markAllAsTouched();
+    } else {
+      this.editTaskForm.value.dueDate =
+        this.editTaskForm.value.dueDate.getTime();
+      this.editTaskForm.value.location = 'Backlog';
+      this.task = new Task(this.editTaskForm.value);
+      this.firestore
+        .collection('tasks')
+        .doc(this.taskId)
+        .update(this.task.toJSON())
+        .then(() => {
+          console.log('updated firebase');
+        });
+      this.router.navigate(['/backlog']);
+    }
   }
 }

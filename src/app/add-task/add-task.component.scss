@@ -1,6 +1,7 @@
 :host {
   height: 90vh;
-  overflow: hidden;
+  width: 100%;
+  overflow: auto;
 }
 h1 {
   font-weight: 500;
@@ -110,6 +111,15 @@ button {
       opacity: 0.2;
       color: grey;
     }
+  }
+}
+@media (max-width: 400px) {
+  mat-card {
+    margin: 0.5rem;
+  }
+  h2 {
+    font-size: 14px;
+    margin-block-end: 0.5rem;
   }
 }
 @media (max-width: 400px) {

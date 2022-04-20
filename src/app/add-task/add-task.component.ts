@@ -62,11 +62,11 @@ export class AddTaskComponent implements OnInit {
   }
 
   addTask() {
-    this.addTaskForm.value.dueDate = this.addTaskForm.value.dueDate.getTime();
-    this.addTaskForm.value.location = 'Backlog';
     if (this.addTaskForm.invalid) {
       this.addTaskForm.markAllAsTouched();
     } else {
+      this.addTaskForm.value.dueDate = this.addTaskForm.value.dueDate.getTime();
+      this.addTaskForm.value.location = 'Backlog';
       this.task = new Task(this.addTaskForm.value);
       this.firestore
         .collection('tasks')

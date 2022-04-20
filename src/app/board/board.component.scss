@@ -1,6 +1,7 @@
 :host {
   padding: 0 1rem;
   .wrap {
+    margin-top: 1rem;
     height: 91vh;
     display: flex;
     justify-content: space-between;
@@ -114,7 +115,7 @@
       }
       h1 {
         font-size: 18px;
-        padding: 0 1rem;
+        padding: 0.5rem 1rem;
         border-bottom: #69f0ae 2px solid;
       }
       .tasks-container {
@@ -140,6 +141,7 @@
     .wrap {
       h1 {
         font-size: 16px;
+        padding: 0.25rem 1rem;
       }
     }
   }

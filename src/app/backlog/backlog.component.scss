@@ -1,18 +1,21 @@
 :host {
   display: flex;
   flex-direction: column;
-  h1 {
-    font-size: 3rem;
-    margin: 0;
-    padding: 2rem;
-  }
-  h2 {
-    margin: 0 0 12px;
-  }
-  mat-card {
-    font-size: 1rem;
-    margin: 0 2rem 1rem;
-  }
+}
+h1 {
+  font-size: 3rem;
+  margin: 0;
+  padding: 1rem;
+}
+h2 {
+  margin: 0 0 12px;
+}
+mat-card {
+  font-size: 1rem;
+  margin: 0 2rem 1rem;
+}
+.backlog-card {
+  margin-top: 1rem;
 }
 .work-management {
   width: 35%;
@@ -31,83 +34,83 @@
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 0 1rem;
-  .task-card {
+}
+.task-card {
+  cursor: pointer;
+  display: flex;
+  width: 27%;
+  margin: 0 1rem 1rem;
+  &:hover {
+    filter: brightness(1.15);
+  }
+}
+
+.task-value-div {
+  width: 88%;
+  cursor: pointer;
+}
+.task-icons-div {
+  width: 12%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-around;
+  align-items: center;
+  mat-icon {
     cursor: pointer;
-    display: flex;
-    width: 27%;
-    margin: 0 1rem 1rem;
-    &:hover {
-      filter: brightness(1.15);
-    }
-    .task-value-div {
-      width: 88%;
-      cursor: pointer;
-    }
-    .task-icons-div {
-      width: 12%;
-      display: flex;
-      flex-direction: column-reverse;
-      justify-content: space-around;
-      align-items: center;
-      mat-icon {
-        cursor: pointer;
-      }
-    }
-    .task-assigned-to {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-    }
+  }
+  .task-assigned-to {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
 }
 
 @media (max-width: 1180px) {
-  .tasks-container {
-    .task-card {
-      width: 40%;
-    }
+  .task-card {
+    width: 40%;
   }
 }
 @media (max-width: 840px) {
   .tasks-container {
     justify-content: center;
-    .task-card {
-      width: 100%;
-    }
+  }
+  .task-card {
+    width: 100%;
   }
 }
-@media (max-width: 640px) {
-  h1 {
+
+@media (max-width: 590px) {
+  mat-card {
+    margin: 0;
+  }
+  .backlog-card {
+    font-size: 16px;
+    margin: 1rem 0.5rem 1rem;
     text-align: center;
   }
-  mat-card {
-    text-align: center;
-    margin: 0 1rem 1rem !important;
+  .task-card {
+    margin: 0 0.5rem 1rem;
   }
   .tasks-container {
     justify-content: center;
     padding: 0;
-    .task-card {
-      text-align: start;
-      width: 100%;
-    }
   }
 }
-@media (max-width: 640px) {
-  h1 {
-    font-size: 12px;
-  }
+@media (max-width: 435px) {
   mat-card {
-    text-align: center;
-    margin: 0 0.25rem 1rem !important;
+    flex-direction: column;
   }
-  .tasks-container {
-    justify-content: center;
+  h1 {
+    font-size: 2rem;
     padding: 0;
-    .task-card {
-      margin: 0 0.25rem 1rem;
-    }
+  }
+  .task-value-div {
+    width: 100%;
+  }
+  .task-icons-div {
+    width: 100%;
+    flex-direction: row-reverse;
   }
 }

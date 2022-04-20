@@ -1,4 +1,4 @@
-<h1>Backlog</h1>
+<mat-card class="backlog-card"><h1>Backlog</h1></mat-card>
 <ng-container *ngFor="let task of allTasks">
   <mat-card *ngIf="task.location != 'Backlog'" class="no-tasks"
     >There are no tasks. Go to
@@ -13,7 +13,9 @@
       <div (click)="openDetailDialog()" class="task-value-div">
         <h2 class="task-title">{{ task.title }}</h2>
         <p class="task-category">{{ task.category }}</p>
-        <p class="task-due-date">{{ task.dueDate | date: "dd.MM.yyyy" }}</p>
+        <p *ngIf="task.dueDate" class="task-due-date">
+          {{ task.dueDate | date: "dd.MM.yyyy" }}
+        </p>
         <p class="task-assigned-to">{{ task.assignedTo }}</p>
       </div>
       <div class="task-icons-div">
