@@ -2,14 +2,18 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow: auto;
 }
 h1 {
-  font-size: 3rem;
+  font-size: 2rem;
+  padding: 0.25rem;
   margin: 0;
-  padding: 1rem;
 }
 h2 {
   margin: 0 0 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 mat-card {
   font-size: 1rem;
@@ -35,6 +39,7 @@ mat-card {
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 0 1rem;
+  overflow: auto;
 }
 .task-card {
   cursor: pointer;
@@ -59,13 +64,12 @@ mat-card {
   mat-icon {
     cursor: pointer;
   }
-  .task-assigned-to {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-  }
+}
+.task-assigned-to {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 @media (max-width: 1180px) {
@@ -113,5 +117,17 @@ mat-card {
   .task-icons-div {
     width: 100%;
     flex-direction: row-reverse;
+  }
+}
+@media (max-width: 350px) {
+  mat-card {
+    flex-direction: column;
+    font-size: unset;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1rem;
   }
 }

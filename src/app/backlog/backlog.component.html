@@ -11,14 +11,18 @@
   <ng-container
     *ngFor="let task of allTasks; trackBy: trackByFn; let i = index"
   >
-    <mat-card *ngIf="task.location === 'Backlog'" class="task-card">
-      <div (click)="openDetailDialog()" class="task-value-div">
+    <mat-card
+      *ngIf="task.location === 'Backlog'"
+      id="task{{ i }}"
+      class="task-card"
+    >
+      <div (click)="openDetailDialog(task)" class="task-value-div">
         <h2 class="task-title">{{ task.title }}</h2>
         <p class="task-category">{{ task.category }}</p>
         <p *ngIf="task.dueDate" class="task-due-date">
           {{ task.dueDate | date: "dd.MM.yyyy" }}
         </p>
-        <p class="task-assigned-to">{{ task.assignedTo }}</p>
+        <p class="task-assigned-to">{{ task.assignedTo.join(", ") }}</p>
       </div>
       <div class="task-icons-div">
         <mat-icon matTooltip="Delete this task" matTooltipPosition="left"

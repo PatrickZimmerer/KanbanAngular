@@ -3,7 +3,6 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Task } from 'src/models/task.class';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogDetailTaskComponent } from '../dialog-detail-task/dialog-detail-task.component';
-import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-backlog',
   templateUrl: './backlog.component.html',
@@ -12,11 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class BacklogComponent implements OnInit {
   task: any = new Task();
   allTasks: any = [];
-  constructor(
-    private firestore: AngularFirestore,
-    public dialog: MatDialog,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private firestore: AngularFirestore, public dialog: MatDialog) {}
   taskId: any;
   ngOnInit(): void {
     this.firestore
@@ -27,8 +22,18 @@ export class BacklogComponent implements OnInit {
         this.allTasks = changes;
       });
   }
-  openDetailDialog() {
-    this.dialog.open(DialogDetailTaskComponent);
+
+  openDetailDialog(task: any) {
+    this.task = new Task(task);
+    this.dialog.open(DialogDetailTaskComponent, {
+      width: '70%',
+      maxWidth: '85%',
+      minHeight: '40%',
+      maxHeight: '80%',
+      autoFocus: false,
+      hasBackdrop: true,
+      data: task,
+    });
   }
 
   moveToBoard(task: any) {
@@ -37,6 +42,7 @@ export class BacklogComponent implements OnInit {
     this.updateFirestore(task);
     console.log(task);
   }
+
   updateFirestore(task: any) {
     debugger;
     this.task = new Task(task);

@@ -1,29 +1,37 @@
-<div class="task-value-div">
-  <div>
-    <h2 class="task-title">{{ task.title }}</h2>
-    <p class="task-category">{{ task.category }}</p>
-    <p class="task-due-date">{{ task.dueDate | date: "dd.MM.yyyy" }}</p>
-    <p class="task-assigned-to">{{ task.assignedTo }}</p>
-  </div>
-  <div class="task-icons-div">
-    <mat-icon
-      matTooltip="Go back to Backlog"
-      matTooltipPosition="left"
-      mat-dialog-close
-      >close</mat-icon
-    >
-    <mat-icon matTooltip="Delete this task" matTooltipPosition="left"
-      >delete</mat-icon
-    >
-    <mat-icon matTooltip="Move this task to Board" matTooltipPosition="left"
-      >drive_file_move</mat-icon
-    >
-    <mat-icon
-      mat-dialog-close
-      [routerLink]="['/task/' + task.customIdName]"
-      matTooltip="Edit this task"
-      matTooltipPosition="left"
-      >edit</mat-icon
-    >
-  </div>
-</div>
+<mat-dialog-content>
+  <h1 class="task-title">{{ task.title }}</h1>
+  <span
+    ><i>Team </i>:
+    <p>{{ task.category }}</p></span
+  >
+  <span
+    ><i>Description </i>:
+    <p>{{ task.description }}</p></span
+  >
+  <span
+    ><i>Deadline </i>:
+    <p>{{ task.dueDate | date: "dd.MM.yyyy" }}</p></span
+  >
+  <span
+    ><i>Urgency </i>:
+    <p>{{ task.urgency }}</p></span
+  >
+  <span
+    ><i>Assigned to </i>:
+    <p class="task-assigned-to">{{ task.assignedTo.join(", ") }}</p></span
+  >
+</mat-dialog-content>
+<mat-dialog-actions>
+  <mat-icon
+    matTooltip="Go back to Backlog"
+    matTooltipPosition="right"
+    mat-dialog-close
+    >close</mat-icon
+  >
+  <mat-icon matTooltip="Delete this task" matTooltipPosition="right"
+    >delete</mat-icon
+  >
+  <mat-icon matTooltip="Move this task to Board" matTooltipPosition="right"
+    >drive_file_move</mat-icon
+  >
+</mat-dialog-actions>

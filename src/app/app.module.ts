@@ -28,7 +28,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { DialogDetailTaskComponent } from './dialog-detail-task/dialog-detail-task.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditTaskComponent } from './edit-task/edit-task.component';
-import { DetailTaskComponent } from './detail-task/detail-task.component';
 import { DialogEditTaskComponent } from './dialog-edit-task/dialog-edit-task.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 // import { DragulaModule } from 'ng2-dragula';
@@ -43,7 +42,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     HelpComponent,
     DialogDetailTaskComponent,
     EditTaskComponent,
-    DetailTaskComponent,
     DialogEditTaskComponent,
   ],
   imports: [

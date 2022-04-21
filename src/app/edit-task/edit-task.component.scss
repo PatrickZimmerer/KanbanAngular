@@ -29,7 +29,7 @@ form {
   }
   .description {
     min-height: 7rem;
-    max-height: 11rem;
+    max-height: 10rem;
   }
   .error {
     color: red;
@@ -53,13 +53,6 @@ button {
     color: #424242;
     background-color: #69f0ae;
   }
-}
-.submit-btn-div {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  position: relative;
-  top: 3rem;
 }
 
 @media (min-width: 1300px) {

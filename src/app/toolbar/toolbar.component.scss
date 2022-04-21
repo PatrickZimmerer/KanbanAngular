@@ -1,14 +1,8 @@
 .example-sidenav-content {
   display: flex;
 }
-
 mat-drawer-container {
   height: 100vh;
-  max-height: 100%;
-  overflow: hidden !important;
-}
-mat-drawer-content {
-  overflow: hidden;
 }
 .router-outlet-container {
   display: flex;

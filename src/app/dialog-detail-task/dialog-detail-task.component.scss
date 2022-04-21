@@ -1,3 +1,50 @@
+:host {
+  display: flex;
+  height: 100%;
+}
+p {
+  display: inline-block;
+}
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 90%;
+}
+mat-dialog-actions {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+  height: 100%;
+  width: 10%;
+}
+
 mat-icon {
   cursor: pointer;
+  padding-bottom: 2rem;
+}
+
+@media (max-width: 500px) {
+  :host {
+    flex-direction: column;
+  }
+  p {
+    display: inline-block;
+  }
+  mat-dialog-content {
+    height: 90%;
+    width: 100%;
+  }
+  mat-dialog-actions {
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    padding-left: 0;
+    height: 10%;
+    width: 100%;
+  }
+
+  mat-icon {
+    padding-bottom: 0;
+  }
 }

@@ -3,7 +3,12 @@
     <h1>TO-DO</h1>
     <div cdkDropList class="tasks-container to-do">
       <ng-container *ngFor="let task of allTasks; let i = index">
-        <mat-card *ngIf="task.location === 'Todo'" class="task-card" cdkDrag>
+        <mat-card
+          (click)="openDetailDialog(task)"
+          *ngIf="task.location === 'Todo'"
+          class="task-card"
+          cdkDrag
+        >
           <div class="task-div">
             <h2 class="task-title">{{ task.title }}</h2>
             <p class="task-description">{{ task.description }}</p>
@@ -21,6 +26,7 @@
     >
       <ng-container *ngFor="let task of allTasks; let i = index">
         <mat-card
+          (click)="openDetailDialog(task)"
           *ngIf="task.location === 'Progress'"
           class="task-card"
           cdkDrag
@@ -41,7 +47,12 @@
       class="tasks-container testing"
     >
       <ng-container *ngFor="let task of allTasks; let i = index">
-        <mat-card *ngIf="task.location === 'Testing'" class="task-card" cdkDrag>
+        <mat-card
+          (click)="openDetailDialog(task)"
+          *ngIf="task.location === 'Testing'"
+          class="task-card"
+          cdkDrag
+        >
           <div class="task-div">
             <h2 class="task-title">{{ task.title }}</h2>
             <p class="task-description">{{ task.description }}</p>
@@ -58,7 +69,12 @@
       class="tasks-container done"
     >
       <ng-container *ngFor="let task of allTasks; let i = index">
-        <mat-card *ngIf="task.location === 'Done'" class="task-card" cdkDrag>
+        <mat-card
+          (click)="openDetailDialog(task)"
+          *ngIf="task.location === 'Done'"
+          class="task-card"
+          cdkDrag
+        >
           <div class="task-div">
             <h2 class="task-title">{{ task.title }}</h2>
             <p class="task-description">{{ task.description }}</p>

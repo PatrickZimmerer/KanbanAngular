@@ -55,6 +55,18 @@ export class BoardComponent implements OnInit {
         this.allTasks = changes;
       });
   }
+  openDetailDialog(task: any) {
+    this.task = new Task(task);
+    this.dialog.open(DialogDetailTaskComponent, {
+      width: '70%',
+      maxWidth: '85%',
+      minHeight: '40%',
+      maxHeight: '80%',
+      autoFocus: false,
+      hasBackdrop: true,
+      data: task,
+    });
+  }
 
   event: any;
   drop(event: CdkDragDrop<Task[]>) {
@@ -77,9 +89,5 @@ export class BoardComponent implements OnInit {
         event.currentIndex
       );
     }
-  }
-
-  openDetailDialog() {
-    this.dialog.open(DialogDetailTaskComponent);
   }
 }

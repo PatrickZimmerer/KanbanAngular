@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {
   FormControl,
@@ -33,7 +33,8 @@ export class AddTaskComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public firestore: AngularFirestore
+    public firestore: AngularFirestore,
+    private el: ElementRef
   ) {
     this.addTaskForm = this.formBuilder.group({
       title: new FormControl('', [
@@ -44,6 +45,7 @@ export class AddTaskComponent implements OnInit {
       description: new FormControl('', [
         Validators.required,
         Validators.minLength(10),
+        Validators.maxLength(300),
       ]),
       dueDate: new FormControl('', [Validators.required]),
       urgency: new FormControl('', [Validators.required]),
@@ -64,6 +66,7 @@ export class AddTaskComponent implements OnInit {
   addTask() {
     if (this.addTaskForm.invalid) {
       this.addTaskForm.markAllAsTouched();
+      this.scrollToFirstInvalidControl();
     } else {
       this.addTaskForm.value.dueDate = this.addTaskForm.value.dueDate.getTime();
       this.addTaskForm.value.location = 'Backlog';
@@ -76,5 +79,10 @@ export class AddTaskComponent implements OnInit {
         });
       this.resetForm();
     }
+  }
+  scrollToFirstInvalidControl() {
+    const firstInvalidControl: HTMLElement =
+      this.el.nativeElement.querySelector('mat-form-field.ng-invalid');
+    firstInvalidControl.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 }

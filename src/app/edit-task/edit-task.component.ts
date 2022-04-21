@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Task } from 'src/models/task.class';
 import {
@@ -36,17 +36,20 @@ export class EditTaskComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
+    private el: ElementRef,
     public firestore: AngularFirestore
   ) {
     this.editTaskForm = this.formBuilder.group({
       title: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
+        Validators.maxLength(40),
       ]),
       category: new FormControl('', [Validators.required]),
       description: new FormControl('', [
         Validators.required,
         Validators.minLength(10),
+        Validators.maxLength(300),
       ]),
       dueDate: new FormControl('', [Validators.required]),
       urgency: new FormControl('', [Validators.required]),
@@ -64,6 +67,12 @@ export class EditTaskComponent implements OnInit {
     });
   }
 
+  scrollToFirstInvalidControl() {
+    const firstInvalidControl: HTMLElement =
+      this.el.nativeElement.querySelector('mat-form-field.ng-invalid');
+    firstInvalidControl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
   getTask() {
     this.firestore
       .collection('tasks')
@@ -73,16 +82,15 @@ export class EditTaskComponent implements OnInit {
         task.dueDate = new Date(task.dueDate);
         this.task = task;
         this.editTaskForm.setValue(this.task);
-        console.log(this.editTaskForm.value);
       });
   }
   editBacklogTask() {
     if (this.editTaskForm.invalid) {
       this.editTaskForm.markAllAsTouched();
+      this.scrollToFirstInvalidControl();
     } else {
       this.editTaskForm.value.dueDate =
         this.editTaskForm.value.dueDate.getTime();
-      debugger;
       this.updateFirestore();
       this.router.navigate(['/backlog']);
     }
