@@ -51,6 +51,7 @@ export class EditTaskComponent implements OnInit {
       dueDate: new FormControl('', [Validators.required]),
       urgency: new FormControl('', [Validators.required]),
       assignedTo: new FormControl('', [Validators.required]),
+      location: new FormControl('', [Validators.required]),
     });
   }
   taskId: any;
@@ -69,26 +70,31 @@ export class EditTaskComponent implements OnInit {
       .doc(this.taskId)
       .valueChanges()
       .subscribe((task: any) => {
+        task.dueDate = new Date(task.dueDate);
         this.task = task;
+        this.editTaskForm.setValue(this.task);
+        console.log(this.editTaskForm.value);
       });
   }
   editBacklogTask() {
-    debugger;
     if (this.editTaskForm.invalid) {
       this.editTaskForm.markAllAsTouched();
     } else {
       this.editTaskForm.value.dueDate =
         this.editTaskForm.value.dueDate.getTime();
-      this.editTaskForm.value.location = 'Backlog';
-      this.task = new Task(this.editTaskForm.value);
-      this.firestore
-        .collection('tasks')
-        .doc(this.taskId)
-        .update(this.task.toJSON())
-        .then(() => {
-          console.log('updated firebase');
-        });
+      debugger;
+      this.updateFirestore();
       this.router.navigate(['/backlog']);
     }
+  }
+  updateFirestore() {
+    this.task = new Task(this.editTaskForm.value);
+    this.firestore
+      .collection('tasks')
+      .doc(this.taskId)
+      .update(this.task.toJSON())
+      .then(() => {
+        console.log('updated firebase');
+      });
   }
 }

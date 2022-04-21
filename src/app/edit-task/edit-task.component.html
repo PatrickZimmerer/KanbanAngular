@@ -7,10 +7,9 @@
         color="accent"
         class="example-full-width"
         appearance="fill"
-        value="task.title"
       >
         <mat-label>Task title</mat-label>
-        <input [value]="task.title" formControlName="title" matInput />
+        <input formControlName="title" matInput />
       </mat-form-field>
 
       <h2>CATEGORY</h2>
@@ -20,7 +19,7 @@
         appearance="fill"
       >
         <mat-label>Choose a category</mat-label>
-        <mat-select [value]="task.category" formControlName="category">
+        <mat-select formControlName="category">
           <mat-option
             *ngFor="let category of categoryList"
             [value]="category"
@@ -33,7 +32,6 @@
       <mat-form-field color="accent" class="description" appearance="fill">
         <mat-label>Task description</mat-label>
         <textarea
-          [value]="task.description"
           formControlName="description"
           class="description"
           matInput
@@ -45,12 +43,7 @@
       <h2>DUE DATE</h2>
       <mat-form-field color="accent" appearance="fill">
         <mat-label>MM/DD/YYYY</mat-label>
-        <input
-          [value]="task.dueDate"
-          formControlName="dueDate"
-          matInput
-          [matDatepicker]="picker"
-        />
+        <input formControlName="dueDate" matInput [matDatepicker]="picker" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -62,7 +55,7 @@
         appearance="fill"
       >
         <mat-label>Choose an urgency</mat-label>
-        <mat-select [value]="task.urgency" formControlName="urgency">
+        <mat-select formControlName="urgency">
           <mat-option *ngFor="let urgency of urgencyList" [value]="urgency">{{
             urgency
           }}</mat-option>
@@ -72,11 +65,7 @@
       <h2>EMPLOYEES</h2>
       <mat-form-field color="accent" appearance="fill">
         <mat-label>Assign task to... </mat-label>
-        <mat-select
-          multiple
-          [value]="task.assignedTo"
-          formControlName="assignedTo"
-        >
+        <mat-select multiple formControlName="assignedTo">
           <mat-option
             *ngFor="let employee of employeeList"
             [value]="employee"

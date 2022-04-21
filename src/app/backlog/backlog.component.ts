@@ -19,10 +19,6 @@ export class BacklogComponent implements OnInit {
   ) {}
   taskId: any;
   ngOnInit(): void {
-    this.route.paramMap.subscribe((paramMap) => {
-      this.taskId = paramMap.get('id');
-      console.log('got ids', this.taskId);
-    });
     this.firestore
       .collection('tasks')
       .valueChanges({ idField: 'customIdName' })
@@ -32,16 +28,30 @@ export class BacklogComponent implements OnInit {
       });
   }
   openDetailDialog() {
-    const dialog = this.dialog.open(DialogDetailTaskComponent);
-    dialog.componentInstance.task = new Task(this.task.toJSON());
-    dialog.componentInstance.taskId = this.taskId;
+    this.dialog.open(DialogDetailTaskComponent);
   }
 
   moveToBoard(task: any) {
-    task.location = 'Board';
+    task.location = 'Todo';
     console.log(task);
-    task = new Task(task);
+    this.updateFirestore(task);
     console.log(task);
-    this.firestore.collection('tasks').doc(task).update(task.toJSON());
+  }
+  updateFirestore(task: any) {
+    debugger;
+    this.task = new Task(task);
+    console.log('task is', task);
+    console.log('this task is', this.task);
+    this.firestore
+      .collection('tasks')
+      .doc(this.task.customIdName)
+      .update(this.task.toJSON())
+      .then(() => {
+        console.log('updated firebase');
+      });
+  }
+
+  trackByFn(task: any) {
+    return this.taskId;
   }
 }

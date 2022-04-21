@@ -15,9 +15,11 @@ export class DialogDetailTaskComponent implements OnInit {
   task: any = {};
   taskId: any = '';
   ngOnInit(): void {
-    this.route.paramMap.subscribe((paramMap) => {
-      this.taskId = paramMap.get('id');
-      console.log('got id', this.taskId);
-    });
+    this.firestore
+      .collection('tasks')
+      .valueChanges({ idField: 'customIdName' })
+      .subscribe((changes: any) => {
+        console.log('received changes from DB', changes);
+      });
   }
 }
