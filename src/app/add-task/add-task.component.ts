@@ -63,6 +63,10 @@ export class AddTaskComponent implements OnInit {
     this.addTaskForm.markAsPristine();
   }
 
+  /**
+   * creates a new Task and updates it in the backend if the Form is valid
+   * otherwise it scrolls to the first invalid inputfield
+   */
   addTask() {
     if (this.addTaskForm.invalid) {
       this.addTaskForm.markAllAsTouched();
@@ -80,6 +84,10 @@ export class AddTaskComponent implements OnInit {
       this.resetForm();
     }
   }
+
+  /**
+   * scrolls to the first invalid inputfield (only executed if form is invalid)
+   */
   scrollToFirstInvalidControl() {
     const firstInvalidControl: HTMLElement =
       this.el.nativeElement.querySelector('mat-form-field.ng-invalid');

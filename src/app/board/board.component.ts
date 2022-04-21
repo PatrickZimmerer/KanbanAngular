@@ -9,7 +9,6 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-// import { DragulaService } from 'ng2-dragula';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -19,33 +18,16 @@ export class BoardComponent implements OnInit {
   task: any = new Task();
   allTasks: any = [];
   taskId = '';
-  todo: any = [];
-  progress: any = [];
-  testing: any = [];
-  done: any = [];
 
   constructor(
     private firestore: AngularFirestore,
     public dialog: MatDialog,
-    private route: ActivatedRoute // private dragulaService: DragulaService
-  ) {
-    // dragulaService.createGroup('tasks', {
-    //   removeOnSpill: false,
-    // });
-    // this.subs.add(
-    // this.dragulaService.drag('tasks').subscribe(({ name, el, source }) => {
-    //   console.log(name, el, source);
-    // })
-    // );
-    // this.subs.add(
-    // this.dragulaService
-    //   .drop('tasks')
-    //   .subscribe(({ name, el, target, source, sibling }) => {
-    //     console.log(name, el, source)
-    //   })
-    // );
-  }
+    private route: ActivatedRoute
+  ) {}
 
+  /**
+   * Gets the data from the backend and pushes it into allTasks array
+   */
   ngOnInit(): void {
     this.firestore
       .collection('tasks')
@@ -55,6 +37,10 @@ export class BoardComponent implements OnInit {
         this.allTasks = changes;
       });
   }
+  /**
+   * Opens up a Dialog with all data of the clicked task
+   * @param task the values of the clicked task
+   */
   openDetailDialog(task: any) {
     this.task = new Task(task);
     this.dialog.open(DialogDetailTaskComponent, {

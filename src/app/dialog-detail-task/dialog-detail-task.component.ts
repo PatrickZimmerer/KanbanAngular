@@ -17,8 +17,10 @@ export class DialogDetailTaskComponent implements OnInit {
   ) {}
   task: any = {};
   taskId: any = '';
+  /**
+   * changes the data given to task so its more obvious in the HTML
+   */
   ngOnInit(): void {
-    console.log(this.data);
     this.task = this.data;
   }
 }

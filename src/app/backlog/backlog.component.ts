@@ -13,6 +13,11 @@ export class BacklogComponent implements OnInit {
   allTasks: any = [];
   constructor(private firestore: AngularFirestore, public dialog: MatDialog) {}
   taskId: any;
+
+  /**
+   * Gets the data from the backend and pushes it into allTasks array
+   */
+
   ngOnInit(): void {
     this.firestore
       .collection('tasks')
@@ -23,6 +28,10 @@ export class BacklogComponent implements OnInit {
       });
   }
 
+  /**
+   * Opens up a Dialog with all data of the clicked task
+   * @param task the values of the clicked task
+   */
   openDetailDialog(task: any) {
     this.task = new Task(task);
     this.dialog.open(DialogDetailTaskComponent, {
@@ -36,15 +45,20 @@ export class BacklogComponent implements OnInit {
     });
   }
 
+  /**
+   * Changes the location of the task and updates the backend
+   * @param task contains the values of the clicked task
+   */
   moveToBoard(task: any) {
     task.location = 'Todo';
-    console.log(task);
     this.updateFirestore(task);
-    console.log(task);
   }
 
+  /**
+   * transforms task to a JSON and updates its values in the backend
+   * @param task contains the value of the given task
+   */
   updateFirestore(task: any) {
-    debugger;
     this.task = new Task(task);
     console.log('task is', task);
     console.log('this task is', this.task);
@@ -57,6 +71,12 @@ export class BacklogComponent implements OnInit {
       });
   }
 
+  /**
+   * This is a helper function that checks when a task based on its id is added and only
+   * renders the new task instead of allTasks ( for scalability )
+   * @param task values of task
+   * @returns the id of each task in the for loop
+   */
   trackByFn(task: any) {
     return this.taskId;
   }

@@ -59,6 +59,10 @@ export class EditTaskComponent implements OnInit {
   }
   taskId: any;
   editTaskForm!: FormGroup;
+
+  /**
+   * gets the task id based on the url on initialization
+   */
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap) => {
       this.taskId = paramMap.get('id');
@@ -67,12 +71,9 @@ export class EditTaskComponent implements OnInit {
     });
   }
 
-  scrollToFirstInvalidControl() {
-    const firstInvalidControl: HTMLElement =
-      this.el.nativeElement.querySelector('mat-form-field.ng-invalid');
-    firstInvalidControl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-
+  /**
+   * gets the task values based on the id from the backend and fills the form with the given data
+   */
   getTask() {
     this.firestore
       .collection('tasks')
@@ -84,6 +85,10 @@ export class EditTaskComponent implements OnInit {
         this.editTaskForm.setValue(this.task);
       });
   }
+  /**
+   * updates the task in the backend if the Form is valid otherwise it scrolls
+   * to the first invalid inputfield and then redirects you to the backlog
+   */
   editBacklogTask() {
     if (this.editTaskForm.invalid) {
       this.editTaskForm.markAllAsTouched();
@@ -95,6 +100,19 @@ export class EditTaskComponent implements OnInit {
       this.router.navigate(['/backlog']);
     }
   }
+
+  /**
+   * scrolls to the first invalid inputfield (only executed if form is invalid)
+   */
+  scrollToFirstInvalidControl() {
+    const firstInvalidControl: HTMLElement =
+      this.el.nativeElement.querySelector('mat-form-field.ng-invalid');
+    firstInvalidControl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  /**
+   * transforms task to a JSON and updates its values in the backend
+   */
   updateFirestore() {
     this.task = new Task(this.editTaskForm.value);
     this.firestore
